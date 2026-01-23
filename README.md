@@ -97,7 +97,7 @@ angular-user-directory/
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/AbdurRahman-202416/angular-user-directory.git
 cd angular-user-directory
 ```
 
