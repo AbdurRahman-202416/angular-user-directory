@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="btn-link">
+    <a routerLink="/" class="back-link">Back</a>
+    <h1 class="text-title">User Details Info</h1>
+    <a routerLink="/create-user" class="back-link2">Create User</a>
+  </div>
+  @if (isLoading()) {
+  <p style="text-align: center; margin-top: 2rem;">Loading user details...</p>
+  } @else {
+  <ul *ngIf="UserData as data; else noData" class="user-list">
+    <li>
+      <span class="label">Name</span>
+      <span class="value">{{ data.name }}</span>
+    </li>
+    <li>
+      <span class="label">Username</span>
+      <span class="value">{{ data.username }}</span>
+    </li>
+    <li>
+      <span class="label">Email</span>
+      <span class="value">{{ data.email }}</span>
+    </li>
+    <li>
+      <span class="label">Phone</span>
+      <span class="value">{{ data.phone }}</span>
+    </li>
+    <li>
+      <span class="label">City</span>
+      <span class="value">{{ data.address?.city }}</span>
+    </li>
+  </ul>
+
+  <ng-template #noData>
+    <p style="text-align: center; margin-top: 2rem; color: red;">User not found or error loading data.</p>
+  </ng-template>
+  }
+</div>

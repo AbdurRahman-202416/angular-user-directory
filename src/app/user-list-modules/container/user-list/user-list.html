@@ -1,0 +1,30 @@
+<h1 class="title">User List</h1>
+
+<div class="list-container">
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p>Loading users...</p>
+    </div>
+  }
+
+  <ul class="user-list" *ngIf="!isLoading()">
+    @for (user of pageList; track user.id) {
+      <li>
+        <a [routerLink]="['/user-details', user.id]">
+          {{ user.username }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <!-- Paginator must be outside of the loading conditional to maintain its state -->
+  <mat-paginator
+    [length]="totalUsers"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[2, 4, 8, 10, 100]"
+    (page)="onPageChange($event)"
+    aria-label="Page Size"
+  >
+  </mat-paginator>
+</div>
