@@ -1,7 +1,7 @@
 .user-form {
-  max-width: 80%;
-  margin: 40px auto;
-  padding: 24px;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
@@ -10,25 +10,26 @@
 
 .user-form h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .form-group {
-  margin-bottom: 14px;
+  margin-bottom: 1.25rem;
 }
 
 label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 input,
 textarea {
   width: 100%;
-  padding: 8px 10px;
+  padding: 0.625rem 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 input:focus,
@@ -44,13 +45,13 @@ small {
 
 .btn-group {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .btn {
   flex: 1;
-  padding: 10px;
+  padding: 0.75rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -77,9 +78,77 @@ small {
   background: #0d4936;
   color: white;
 }
+
 a {
   text-decoration: none;
   text-align: center;
   width: 100%;
   margin: auto;
+}
+
+// Tablet and smaller devices
+@media (max-width: 768px) {
+  .user-form {
+    max-width: 90%;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+
+  .user-form h2 {
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .btn-group {
+    gap: 0.625rem;
+    margin-top: 1.25rem;
+  }
+
+  .btn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Mobile devices
+@media (max-width: 480px) {
+  .user-form {
+    max-width: 95%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .user-form h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .form-group {
+    margin-bottom: 0.875rem;
+  }
+
+  label {
+    margin-bottom: 0.375rem;
+    font-size: 0.9rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-group {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    padding: 0.625rem 0.5rem;
+    font-size: 0.875rem;
+  }
 }
