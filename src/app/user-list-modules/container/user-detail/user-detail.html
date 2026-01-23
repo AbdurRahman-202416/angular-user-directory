@@ -1,9 +1,21 @@
 <div class="container">
-  <div class="btn-link">
-    <a routerLink="/" class="back-link">Back</a>
-    <h1 class="text-title">User Details Info</h1>
-    <a routerLink="/create-user" class="back-link2">Create User</a>
-  </div>
+  <nav class="detail-header">
+    <a routerLink="/" class="nav-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+      </svg>
+      <span>Back</span>
+    </a>
+    <h1 class="page-title">User Details Info</h1>
+    <a routerLink="/create-user" class="nav-link create-link">
+      <span>Create User</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+      </svg>
+    </a>
+  </nav>
   @if (isLoading()) {
   <p style="text-align: center; margin-top: 2rem;">Loading user details...</p>
   } @else {
@@ -26,7 +38,7 @@
     </li>
     <li>
       <span class="label">City</span>
-      <span class="value">{{ data.address?.city }}</span>
+      <span class="value">{{ data.address.city }}</span>
     </li>
   </ul>
 

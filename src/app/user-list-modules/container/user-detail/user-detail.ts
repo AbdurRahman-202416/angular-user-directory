@@ -15,7 +15,7 @@ export class UserDetail {
   constructor(
     private route: ActivatedRoute,
     private UserListService: UserListService,
-  ) {}
+  ) { }
   UserData: UserType | null = null;
 
   ngOnInit(): void {
