@@ -34,12 +34,10 @@ export class UserList implements OnInit, OnDestroy {
     this.isLoading.set(true);
 
     this.userListService
-      .getUsersPaginated(this.pageIndex + 1, this.pageSize) 
+      .getUsersPaginated(this.pageIndex + 1, this.pageSize)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res: any) => {
-          // expected response shape:
-          // { data: UserType[], total: number }
           this.pageList = res.data;
           this.totalUsers = res.total;
           this.isLoading.set(false);

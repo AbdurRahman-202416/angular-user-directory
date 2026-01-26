@@ -27,6 +27,7 @@ export class CreateUser implements OnInit {
     alert(JSON.stringify(this.userForm.value));
     if (this.userForm.valid) {
       console.log(this.userForm.value);
+      console.log(this.userForm, ' After All Form Control Data Set Successfully ');
       this.userForm.reset();
     }
   }
