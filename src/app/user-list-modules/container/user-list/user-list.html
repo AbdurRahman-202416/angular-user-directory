@@ -11,12 +11,22 @@
     @for (user of pageList; track user.id) {
       <li>
         <a [routerLink]="['/user-details', user.id]">
+          <span
+            style="
+              margin: 0px 2px 0px 2px;
+              background: #544e4e;
+              color: white;
+              border-radius: 100%;
+              padding: 3px 3px 3px 7px;
+            "
+          >
+            {{ user.id }}.</span
+          >
           {{ user.username }}
         </a>
       </li>
     }
   </ul>
-
 
   <mat-paginator
     [length]="totalUsers"
