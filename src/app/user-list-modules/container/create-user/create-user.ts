@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserListFormService } from '../../services/user-list-form-service';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 
@@ -23,10 +23,25 @@ export class CreateUser implements OnInit {
     this.userForm = this.userFormService.createUserForm();
     console.log(this.userForm);
   }
+
+  get skills(): FormArray {
+    return this.userForm.get('skills') as FormArray;
+  }
+
+  addSkill() {
+    this.skills.push(this.userFormService.createSkillGroup());
+  }
+
+  removeSkill(index: number) {
+    if (this.skills.length > 1) {
+      this.skills.removeAt(index);
+    }
+  }
+
   submit() {
     alert(JSON.stringify(this.userForm.value));
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
+      console.log(JSON.stringify(this.userForm.value), 'All feild Result ');
       console.log(this.userForm, ' After All Form Control Data Set Successfully ');
       this.userForm.reset();
     }

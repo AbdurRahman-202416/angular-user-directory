@@ -2,8 +2,9 @@
 
 <div class="list-container">
   @if (isLoading()) {
-    <div class="loading-state">
-      <p>Loading users...</p>
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-message">Loading users...</p>
     </div>
   }
 
@@ -27,6 +28,8 @@
       </li>
     }
   </ul>
+  <br />
+  <a class="link-for-work" routerLink="work/user-work"> Goto User Work List ⟹</a>
 
   <mat-paginator
     [length]="totalUsers"

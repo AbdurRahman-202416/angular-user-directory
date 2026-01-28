@@ -152,3 +152,61 @@ a {
     font-size: 0.875rem;
   }
 }
+
+[formArrayName='skills'] {
+  .skill-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+
+    input {
+      flex: 1;
+    }
+
+    .btn-remove {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #dc2626;
+        color: white;
+      }
+    }
+
+    small {
+      flex-basis: 100%;
+      margin-top: -4px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .btn-add {
+    background: transparent;
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #eff6ff;
+      border-style: solid;
+    }
+  }
+}

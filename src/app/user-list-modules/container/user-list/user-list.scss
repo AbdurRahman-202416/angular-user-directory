@@ -14,6 +14,7 @@
 .list-container {
   max-width: 90%;
   margin: auto;
+  min-height: 300px;
 }
 
 .user-list {
@@ -22,6 +23,7 @@
   margin: 0;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
+  min-height: 220px;
 }
 
 .user-list li {
@@ -84,5 +86,49 @@ mat-paginator {
 @media (max-width: 600px) {
   mat-paginator {
     padding: 8px;
+  }
+}
+.link-for-work {
+  text-decoration: none;
+  padding: 5px;
+  color: #5a67d8;
+  font-weight: bold;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  margin: 20px auto; /* Centers the container on the page */
+}
+
+.loading-message {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #007bff; /* Blue spinner color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite; /* Animation for spinning */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
