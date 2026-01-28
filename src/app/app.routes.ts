@@ -7,4 +7,12 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./user-list-modules/user-list-modules-module').then((m) => m.UserListModulesModule),
   },
+  {
+    path: 'work',
+    title: 'User Work List',
+    loadChildren: () =>
+      import('./user-work-list-module/user-work-list-module-module').then(
+        (m) => m.UserWorkListModuleModule,
+      ),
+  },
 ];
