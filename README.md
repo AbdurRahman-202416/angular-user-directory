@@ -22,16 +22,18 @@ Angular User Directory is a single-page application (SPA) built with Angular 21 
 
 ## Features
 
-- User List View with pagination support
-- Detailed User Profile View
-- User Creation Form
-- Lazy Loading for optimized performance
-- Reactive Forms for user input
-- HTTP Client integration with JSONPlaceholder API
-- Angular Material UI components
-- Responsive design with SCSS styling
-- Type-safe development with TypeScript
-- Unit testing with Vitest
+- **User List View** with pagination support and loading spinner
+- **Detailed User Profile View** with comprehensive user information
+- **User Creation Form** with dynamic skills management (add/remove skills)
+- **User Work List Module** - New feature for managing user work items
+- **Lazy Loading** for optimized performance
+- **Reactive Forms** with FormArray for dynamic form fields
+- **HTTP Client** integration with JSONPlaceholder API
+- **Angular Material UI** components (Paginator, etc.)
+- **Enhanced UI/UX** with icons, loading states, and smooth animations
+- **Responsive design** with modern SCSS styling
+- **Type-safe development** with TypeScript
+- **Unit testing** with Vitest
 
 ## Technology Stack
 
@@ -63,13 +65,22 @@ angular-user-directory/
 │   │   │   ├── container/               # Smart components
 │   │   │   │   ├── user-list/          # User list component
 │   │   │   │   ├── user-detail/        # User detail component
-│   │   │   │   └── create-user/        # Create user component
+│   │   │   │   └── create-user/        # Create user component with skills form
 │   │   │   ├── services/               # Business logic services
 │   │   │   │   ├── user-list-service.ts
 │   │   │   │   └── user-list-form-service.ts
 │   │   │   ├── types/                  # TypeScript type definitions
 │   │   │   ├── user-list-modules-module.ts
 │   │   │   └── user-list-routing.module.ts
+│   │   ├── user-work-list-module/      # Feature module for user work management
+│   │   │   ├── container/               # Smart components
+│   │   │   │   └── user-works-list/    # User works list component
+│   │   │   ├── services/               # Business logic services
+│   │   │   │   └── user-work-services.ts
+│   │   │   ├── types/                  # TypeScript type definitions
+│   │   │   │   └── user-work.type.ts
+│   │   │   ├── user-work-list-module-module.ts
+│   │   │   └── user-work-route.ts
 │   │   ├── app.config.ts               # Application configuration
 │   │   ├── app.routes.ts               # Root routing configuration
 │   │   ├── app.ts                      # Root component
@@ -236,6 +247,59 @@ loadUsers() {
 }
 ```
 
+## Dynamic Forms with FormArray
+
+### Skills Management in User Creation
+
+The Create User form includes a dynamic skills management feature using Angular's `FormArray`. This allows users to add or remove multiple skill entries dynamically.
+
+**Implementation Details:**
+
+The `UserListFormService` creates a FormArray for skills:
+
+```typescript
+createUserForm(): FormGroup {
+  return this.fb.group({
+    name: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    address: [''],
+    skills: this.fb.array([this.createSkillGroup()]),
+  });
+}
+
+createSkillGroup(): FormGroup {
+  return this.fb.group({
+    skillsName: ['', [Validators.required]],
+  });
+}
+```
+
+**Component Methods:**
+
+```typescript
+get skills(): FormArray {
+  return this.userForm.get('skills') as FormArray;
+}
+
+addSkill() {
+  this.skills.push(this.userFormService.createSkillGroup());
+}
+
+removeSkill(index: number) {
+  if (this.skills.length > 1) {
+    this.skills.removeAt(index);
+  }
+}
+```
+
+**Features:**
+- Add unlimited skill entries
+- Remove individual skills (minimum 1 required)
+- Individual validation for each skill
+- Responsive UI with styled add/remove buttons
+
 ## Routing
 
 ### Route Structure
@@ -244,11 +308,15 @@ The application uses lazy loading for optimal performance:
 
 **Root Routes** (`app.routes.ts`):
 - `/` - User Management Module (lazy loaded)
+- `/work` - User Work List Module (lazy loaded)
 
 **User Module Routes** (`user-list-routing.module.ts`):
 - `/` - User list view
 - `/user-details/:id` - User detail view
 - `/create-user` - Create user form
+
+**User Work Module Routes** (`user-work-route.ts`):
+- `/work/user-work` - User work list view
 
 ### Navigation Example
 
