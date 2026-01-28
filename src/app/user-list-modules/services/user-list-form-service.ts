@@ -14,6 +14,13 @@ export class UserListFormService {
       phone: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       address: [''],
+      skills: this.fb.array([this.createSkillGroup()]),
+    });
+  }
+
+  createSkillGroup(): FormGroup {
+    return this.fb.group({
+      skillsName: ['', [Validators.required]],
     });
   }
 }
