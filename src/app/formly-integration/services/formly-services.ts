@@ -16,8 +16,9 @@ export class UserFormlyService {
       {
         key: 'username',
         type: 'input',
-        templateOptions: {
+        props: {
           label: 'Username',
+          placeholder: 'Enter username',
           required: true,
           minLength: 3,
         },
@@ -25,8 +26,9 @@ export class UserFormlyService {
       {
         key: 'email',
         type: 'input',
-        templateOptions: {
+        props: {
           label: 'Email',
+          placeholder: 'Enter email address',
           type: 'email',
           required: true,
         },
@@ -34,46 +36,19 @@ export class UserFormlyService {
       {
         key: 'phone',
         type: 'input',
-        templateOptions: {
+        props: {
           label: 'Phone',
+          placeholder: 'Enter phone number',
           required: true,
-        },
-      },
-      {
-        key: 'skills',
-        type: 'repeat',
-        templateOptions: {
-          label: 'Skills',
-          addText: '+ Add More Skill',
-        },
-        fieldArray: {
-          fieldGroup: [
-            {
-              key: 'skillsName',
-              type: 'input',
-              templateOptions: {
-                label: 'Skill Name',
-                required: true,
-              },
-            },
-          ],
-        },
-      },
-      {
-        key: 'password',
-        type: 'input',
-        templateOptions: {
-          label: 'Password',
-          type: 'password',
-          required: true,
-          minLength: 6,
         },
       },
       {
         key: 'address',
         type: 'textarea',
-        templateOptions: {
+        props: {
           label: 'Address',
+          placeholder: 'Enter your address',
+          rows: 3,
         },
       },
     ];

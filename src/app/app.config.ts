@@ -6,7 +6,6 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 
 import { routes } from './app.routes';
-import { RepeatTypeComponent } from './formly-integration/types/repeat-section.type';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,9 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     importProvidersFrom(
-      FormlyModule.forRoot({
-        types: [{ name: 'repeat', component: RepeatTypeComponent }],
-      }),
+      FormlyModule.forRoot(),
       FormlyMaterialModule
     )
   ]

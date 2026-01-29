@@ -1,5 +1,13 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <formly-form [form]="form" [fields]="fields" [model]="model"> </formly-form>
+<div class="formly-container">
+  <h1>Formly User Form</h1>
 
-  <button type="submit" [disabled]="form.invalid">Save User</button>
-</form>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <formly-form [form]="form" [fields]="fields" [model]="model"> </formly-form>
+
+    <button type="submit" [disabled]="form.invalid">Save User</button>
+  </form>
+
+  <a routerLink="/" class="nav-link">
+    🏠︎ Back to Home
+  </a>
+</div>
