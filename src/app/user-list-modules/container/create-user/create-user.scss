@@ -11,6 +11,10 @@
 .user-form h2 {
   text-align: center;
   margin-bottom: 1.5rem;
+  color: #0b51e8;
+  border-bottom: 1px dotted rgb(52, 50, 50);
+  padding: 0px 0px 15px 0px;
+  font-family: Arial, sans-serif;
 }
 
 .form-group {
@@ -171,7 +175,7 @@ a {
       height: 38px;
       background: #fee2e2;
       color: #dc2626;
-      border: 1px solid #fecaca;
+      border: 1px dotted #f01111;
       border-radius: 4px;
       cursor: pointer;
       display: flex;
@@ -195,7 +199,7 @@ a {
 
   .btn-add {
     background: transparent;
-    border: 1px solid #3b82f6;
+    border: 1px dotted #3b82f6;
     color: #3b82f6;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -205,8 +209,9 @@ a {
     transition: all 0.2s;
 
     &:hover {
-      background: #eff6ff;
+      background: #0762d8;
       border-style: solid;
+      color: #fff;
     }
   }
 }

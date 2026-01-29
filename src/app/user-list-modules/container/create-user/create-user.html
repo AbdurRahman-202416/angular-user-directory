@@ -1,5 +1,5 @@
 <form [formGroup]="userForm" (ngSubmit)="submit()" class="user-form">
-  <h2>Create User</h2>
+  <h2>User Info Form</h2>
 
   <div class="form-group">
     <label>Username <span style="color: red">*</span></label>
@@ -45,7 +45,7 @@
       <small
         *ngIf="skills.at(i).get('skillsName')?.touched && skills.at(i).get('skillsName')?.invalid"
       >
-        Skill name is required
+        Skills name is required
       </small>
     </div>
     <button class="btn-add" type="button" (click)="addSkill()">+ Add Skill</button>
@@ -67,7 +67,7 @@
   <div class="btn-group">
     <button type="button" class="btn secondary" (click)="goBack()">⏎ Previous</button>
     <button type="submit" class="btn primary" [disabled]="userForm.invalid">
-      {{ userForm.invalid ? '⚠️' : '🗁' }} Save User
+      {{ userForm.invalid ? 'ⓘ' : '🗁' }} Save User
     </button>
     <a class="btn home" [routerLink]="['/']">🏠︎ Home</a>
   </div>
