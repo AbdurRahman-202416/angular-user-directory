@@ -33,25 +33,20 @@ export class UserWorksList implements OnInit, OnDestroy {
     this.PaginatorData(this.pageIndex, this.pageSize);
   }
 
-  getUrlQueryParams() {
-    console.log(this.AllData);
+getUrlQueryParams() {
+  this.queryParams.queryParamMap
+    .pipe(
+      takeUntil(this.destroy$), 
+    )
+    .subscribe(params => {
+      const value = params.get('search');
 
-    this.queryParams.queryParamMap
-      .pipe(
-        finalize(() => {
-          this.isLoading.set(false);
-        }),
-      )
-      .subscribe((params) => {
-        console.log(params.get('search'));
-        let value = params.get('search');
-        if (value) {
-          this.searchData(value);
-        } else {
-          console.log('null');
-        }
-      });
-  }
+      if (value !== null) {
+        this.inputSearchData = value;
+        this.searchData(value);
+      }
+    });
+}
 
   getTodo() {
     this.isLoading.set(true);
@@ -81,6 +76,8 @@ export class UserWorksList implements OnInit, OnDestroy {
       queryParams: {
         search: this.inputSearchData,
       },
+      //for merging other query params
+      queryParamsHandling: 'merge',
     });
 
     this.isLoading.set(true);
