@@ -5,20 +5,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-user-works-list',
   imports: [CommonModule, FormsModule, MatPaginatorModule, RouterLink],
   templateUrl: './user-works-list.html',
   styleUrl: './user-works-list.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserWorksList implements OnInit, OnDestroy {
   constructor(
     private userWorkService: UserWorkServices,
     public route: Router,
     public queryParams: ActivatedRoute,
-  ) {}
+  ) { }
   TodoList: userTodosType[] = [];
   AllData: userTodosType[] = [];
   inputSearchData: string = '';
@@ -33,20 +35,20 @@ export class UserWorksList implements OnInit, OnDestroy {
     this.PaginatorData(this.pageIndex, this.pageSize);
   }
 
-getUrlQueryParams() {
-  this.queryParams.queryParamMap
-    .pipe(
-      takeUntil(this.destroy$), 
-    )
-    .subscribe(params => {
-      const value = params.get('search');
+  getUrlQueryParams() {
+    this.queryParams.queryParamMap
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe(params => {
+        const value = params.get('search');
 
-      if (value !== null) {
-        this.inputSearchData = value;
-        this.searchData(value);
-      }
-    });
-}
+        if (value !== null) {
+          this.inputSearchData = value;
+          this.searchData(value);
+        }
+      });
+  }
 
   getTodo() {
     this.isLoading.set(true);
@@ -76,7 +78,7 @@ getUrlQueryParams() {
       queryParams: {
         search: this.inputSearchData,
       },
-   
+
       queryParamsHandling: 'merge',
     });
 
