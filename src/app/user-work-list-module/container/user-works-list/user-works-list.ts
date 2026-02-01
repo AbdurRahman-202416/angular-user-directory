@@ -76,7 +76,7 @@ getUrlQueryParams() {
       queryParams: {
         search: this.inputSearchData,
       },
-      //for merging other query params
+   
       queryParamsHandling: 'merge',
     });
 
