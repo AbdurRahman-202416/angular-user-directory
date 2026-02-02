@@ -79,7 +79,7 @@ export class UserWorksList implements OnInit, OnDestroy {
 
     this.route.navigate(['work/user-work'], {
       queryParams: {
-        search: this.inputSearchData,
+        search: this.inputSearchData.trim(),
       },
     });
 

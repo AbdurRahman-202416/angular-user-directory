@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { UserFormlyService } from '../../services/formly-services';
   imports: [FormlyModule, ReactiveFormsModule, RouterLink],
   templateUrl: './formly-user-form.html',
   styleUrl: './formly-user-form.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormlyUserForm implements OnInit {
   form = new FormGroup({});
