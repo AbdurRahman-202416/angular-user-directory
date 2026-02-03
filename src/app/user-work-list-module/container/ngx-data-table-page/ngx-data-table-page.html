@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="table-container">
+    <h3>User Work List</h3>
+    <ngx-datatable class="material striped" [rows]="rows" [loadingIndicator]="loadingIndicator" [columns]="columns"
+        [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
+        [reorderable]="reorderable" [limit]="tableConfig.settings.limit">
+    </ngx-datatable>
+</div>
+
+<ng-template #nameTemplate let-row="row" let-value="value">
+    <strong>{{ value }}</strong>
+</ng-template>
+
+<ng-template #statusTemplate let-row="row" let-value="value">
+    <span class="status-badge" [ngClass]="{'active': value === 'Active', 'inactive': value === 'Inactive'}">
+        {{ value }}
+    </span>
+</ng-template>
+
+<ng-template #actionTemplate let-row="row" let-value="value">
+    <button class="btn btn-sm btn-primary">Edit</button>
+    <button class="btn btn-sm btn-danger">Delete</button>
+</ng-template>

@@ -9,10 +9,24 @@ const routes: Routes = [
         (C) => C.UserWorksList,
       ),
   },
+  {
+    path: 'formly',
+    loadComponent: () =>
+      import('../user-work-list-module/container/test-formly/test-formly').then(
+        (C) => C.TestFormly,
+      ),
+  },
+  {
+    path: 'ngx-datatable',
+    loadComponent: () =>
+      import('./container/ngx-data-table-page/ngx-data-table-page').then(
+        (C) => C.NgxDataTablePage,
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class userWorkListRoute {}
+export class userWorkListRoute { }
