@@ -1,29 +1,22 @@
+<app-navbar></app-navbar>
 <div class="todo-container">
   <h2 class="page-title">Todo List</h2>
   <div class="serach-div">
     <input [(ngModel)]="inputSearchData" name="serach" placeholder="Search... " type="text" />
-    <button
-      (click)="searchData(inputSearchData)"
-      style="background-color: rgb(20, 117, 6); color: white"
-      type="button"
-    >
+    <button (click)="searchData(inputSearchData)" style="background-color: rgb(20, 117, 6); color: white" type="button">
       Search
     </button>
 
-    <button
-      (click)="Refresh()"
-      style="background-color: rgb(28, 37, 27); color: white"
-      type="button"
-    >
+    <button (click)="Refresh()" style="background-color: rgb(28, 37, 27); color: white" type="button">
       Refresh
     </button>
   </div>
   <ul class="todo-list">
     @if (isLoading()) {
-      <div class="loading-container">
-        <div class="loading-spinner"></div>
-        <p class="loading-message">Loading users...</p>
-      </div>
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-message">Loading users...</p>
+    </div>
     }
     <p *ngIf="TodoList.length === 0 && isLoading()">No data Found</p>
     <li class="todo-item" *ngFor="let todo of TodoList">
@@ -35,13 +28,7 @@
   </ul>
 
   <a class="link-for-work" routerLink="/">🏠︎ Home</a>
-  <mat-paginator
-    [length]="totalUsers"
-    [pageSize]="pageSize"
-    [pageIndex]="pageIndex"
-    [pageSizeOptions]="[5, 10, 20, 50, 100, AllData.length]"
-    (page)="onPageChange($event)"
-    aria-label="Page Size"
-  >
+  <mat-paginator [length]="totalUsers" [pageSize]="pageSize" [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20, 50, 100, AllData.length]" (page)="onPageChange($event)" aria-label="Page Size">
   </mat-paginator>
 </div>

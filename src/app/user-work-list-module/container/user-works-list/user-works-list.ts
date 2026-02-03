@@ -7,10 +7,11 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-user-works-list',
-  imports: [CommonModule, FormsModule, MatPaginatorModule, RouterLink],
+  imports: [CommonModule, FormsModule, MatPaginatorModule, RouterLink, NavbarComponent],
   templateUrl: './user-works-list.html',
   styleUrl: './user-works-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
