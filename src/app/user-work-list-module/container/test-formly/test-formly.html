@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="formly-container">
+  <h3>Test Formly</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    <button type="submit" class="submit-btn" [disabled]="!form.valid">Submit</button>
+  </form>
+
+  <div class="debug-model">
+    <h4>Model:</h4>
+    <pre>{{ model | json }}</pre>
+  </div>
+</div>
