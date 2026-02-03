@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="navbar elevate-header">
+    <span class="logo">
+
+        User Directory
+    </span>
+    <span class="spacer"></span>
+    <div class="nav-links">
+        <a mat-button *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{exact: link.path === '/'}">
+            <span class="link-text">{{link.label}}</span>
+        </a>
+    </div>
+</mat-toolbar>
