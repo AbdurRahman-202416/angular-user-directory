@@ -4,10 +4,11 @@ import { UserListFormService } from '../../services/user-list-form-service';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { NavbarComponent } from "../../../user-work-list-module/components/navbar/navbar.component";
 
 @Component({
   selector: 'app-create-user',
-  imports: [ReactiveFormsModule, RouterModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule, RouterLink, NavbarComponent],
   templateUrl: './create-user.html',
   styleUrl: './create-user.scss',
 })

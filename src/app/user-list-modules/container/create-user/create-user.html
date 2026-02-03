@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <form [formGroup]="userForm" (ngSubmit)="submit()" class="user-form">
   <h2>User Info Form</h2>
 
@@ -27,24 +29,13 @@
 
   <div class="form-group" formArrayName="skills">
     <label>Your Skills <span style="color: red">*</span></label>
-    <div
-      class="skill-row"
-      *ngFor="let skillsGroup of skills.controls; let i = index"
-      [formGroupName]="i"
-    >
+    <div class="skill-row" *ngFor="let skillsGroup of skills.controls; let i = index" [formGroupName]="i">
       <input formControlName="skillsName" placeholder="Enter Your Skills" />
-      <button
-        *ngIf="skills.controls.length > 1"
-        (click)="removeSkill(i)"
-        class="btn-remove"
-        type="button"
-      >
+      <button *ngIf="skills.controls.length > 1" (click)="removeSkill(i)" class="btn-remove" type="button">
         ⌫
       </button>
 
-      <small
-        *ngIf="skills.at(i).get('skillsName')?.touched && skills.at(i).get('skillsName')?.invalid"
-      >
+      <small *ngIf="skills.at(i).get('skillsName')?.touched && skills.at(i).get('skillsName')?.invalid">
         Skills name is required
       </small>
     </div>
@@ -69,6 +60,6 @@
     <button type="submit" class="btn primary" [disabled]="userForm.invalid">
       {{ userForm.invalid ? 'ⓘ' : '🗁' }} Save User
     </button>
-    <a class="btn home" [routerLink]="['/']">🏠︎ Home</a>
+
   </div>
 </form>
