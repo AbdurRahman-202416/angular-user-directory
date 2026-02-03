@@ -1,6 +1,157 @@
 # Angular User Directory
 
-A modern Angular application for managing and displaying user information. This project provides a comprehensive user directory system with features for listing, viewing, and creating user profiles.
+A modern Angular application for managing and displaying user information. This project features a comprehensive user directory system, a work management module with advanced tables, and dynamic forms handling.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Development](#development)
+- [Building](#building)
+- [Testing](#testing)
+- [API Integration](#api-integration)
+- [Routing](#routing)
+- [Additional Resources](#additional-resources)
+
+## Overview
+
+Angular User Directory is a single-page application (SPA) built with Angular 21. It demonstrates modern Angular development practices, including lazy loading, standalone components, reactive forms, and integration with third-party libraries for enhanced UI/UX.
+
+## Features
+
+### User Management
+- **User List View**: Paginated list of users with search functionality and loading states.
+- **Detailed User Profile**: innovative profile view with comprehensive user information.
+- **User Creation**: Form with dynamic skills management (add/remove skills) using `FormArray`.
+
+### Work Management Module
+- **Datatable View**: Advanced data table using `@swimlane/ngx-datatable` with custom templates for status badges and actions, sorting, and pagination.
+- **Dynamic Forms**: Integrated `@ngx-formly` with Material UI for generating dynamic, metadata-driven forms.
+- **Work List**: A dedicated list view for managing work items.
+
+### UI/UX
+- **Global Navigation**: Responsive Navbar component for easy access across all modules.
+- **Angular Material**: Extensive use of Material Design components (Toolbar, Buttons, Icons, Paginator).
+- **Responsive Design**: Mobile-friendly layouts using SCSS and Flexbox.
+
+## Technology Stack
+
+### Core Dependencies
+
+- **Angular**: 21.0.0 - Progressive web application framework
+- **Angular Material**: 21.1.1 - Material Design components
+- **@swimlane/ngx-datatable**: 22.0.0 - Complex data tables
+- **@ngx-formly**: 6.x - JSON-powered dynamic forms
+- **RxJS**: 7.8.0 - Reactive programming library
+- **TypeScript**: 5.9.2 - Static typing for JavaScript
+
+### Development Tools
+
+- **Angular CLI**: 21.0.5 - Command-line interface
+- **Vitest**: 4.0.8 - Unit testing framework
+- **Prettier**: Code formatting
+
+## Project Structure
+
+```
+angular-user-directory/
+├── src/
+│   ├── app/
+│   │   ├── user-list-modules/          # User Management Feature Module
+│   │   │   ├── container/              # Components: User List, Details, Create User
+│   │   │   ├── services/               # User-related services
+│   │   │   └── types/                  # User models and types
+│   │   ├── user-work-list-module/      # Work Management Feature Module
+│   │   │   ├── container/
+│   │   │   │   ├── ngx-data-table-page/ # Datatable impl with custom templates
+│   │   │   │   ├── test-formly/        # Dynamic form example using Formly
+│   │   │   │   └── user-works-list/    # Standard work list view
+│   │   │   ├── components/
+│   │   │   │   └── navbar/             # Global Navigation Component
+│   │   │   ├── services/               # Work-related services
+│   │   │   └── types/                  # Work models and types
+│   │   ├── formly-integration/         # Shared Formly configuration
+│   │   ├── app.routes.ts               # Root routing configuration
+│   │   └── main.ts                     # Application entry point
+│   ├── styles.scss                     # Global styles & library imports
+│   └── index.html                      # Main HTML file
+└── README.md                           # Project documentation
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v10 or higher)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/AbdurRahman-202416/angular-user-directory.git
+cd angular-user-directory
+```
+
+2. Install dependencies (use `--legacy-peer-deps` for ngx-datatable compatibility):
+```bash
+npm install --legacy-peer-deps
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+4. Open your browser at `http://localhost:4200/`
+
+## Development
+
+### Serving the App
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Code Scaffolding
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+### Building
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Testing
+
+Run `npm test` or `ng test` to execute the unit tests using Vitest.
+
+## API Integration
+
+The application integrates with the **JSONPlaceholder API** for user data and simulates backend responses for the work module.
+
+- **Users API**: `https://jsonplaceholder.typicode.com/users`
+- **Work API**: Simulated local data with `RxJS` delay to mimic network latency.
+
+## Routing
+
+The app features a structured routing system with lazy loading:
+
+- **/**: User List (Home)
+- **User Details**: `/user-details/:id`
+- **Create User**: `/create-user`
+- **Work Module**:
+    - List: `/work/user-work`
+    - Data Table: `/work/ngx-datatable`
+    - Formly Form: `/work/formly`
+
+## Additional Resources
+
+- [Angular Documentation](https://angular.io/docs)
+- [Ngx-Datatable Docs](https://swimlane.github.io/ngx-datatable/)
+- [Formly Documentation](https://formly.dev/)
+- [Angular Material](https://material.angular.io/)
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Table of Contents
 
