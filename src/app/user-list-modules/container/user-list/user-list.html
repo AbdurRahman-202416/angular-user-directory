@@ -1,45 +1,33 @@
+<app-navbar></app-navbar>
 <h1 class="title">User List</h1>
 
 <div class="list-container">
   @if (isLoading()) {
-    <div class="loading-container">
-      <div class="loading-spinner"></div>
-      <p class="loading-message">Loading users...</p>
-    </div>
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-message">Loading users...</p>
+  </div>
   }
 
   <ul class="user-list" *ngIf="!isLoading()">
     @for (user of pageList; track user.id) {
-      <li>
-        <a [routerLink]="['/user-details', user.id]">
-          <span
-            style="
+    <li>
+      <a [routerLink]="['/user-details', user.id]">
+        <span style="
               margin: 0px 2px 0px 2px;
               background: #544e4e;
               color: white;
               border-radius: 100%;
               padding: 3px 3px 3px 7px;
-            "
-          >
-            {{ user.id }}.</span
-          >
-          {{ user.username }}
-        </a>
-      </li>
+            ">
+          {{ user.id }}.</span>
+        {{ user.username }}
+      </a>
+    </li>
     }
   </ul>
-  <br />
-  <a class="link-for-work" routerLink="work/user-work"> Goto User Work List ⟹</a>
-  <br />
-  <a class="link-for-work" routerLink="formly/formly-form/user-form"> Goto Formly Form ⟹</a>
 
-  <mat-paginator
-    [length]="totalUsers"
-    [pageSize]="pageSize"
-    [pageIndex]="pageIndex"
-    [pageSizeOptions]="[2, 4, 8, 10, 100]"
-    (page)="onPageChange($event)"
-    aria-label="Page Size"
-  >
+  <mat-paginator [length]="totalUsers" [pageSize]="pageSize" [pageIndex]="pageIndex"
+    [pageSizeOptions]="[2, 4, 8, 10, 100]" (page)="onPageChange($event)" aria-label="Page Size">
   </mat-paginator>
 </div>

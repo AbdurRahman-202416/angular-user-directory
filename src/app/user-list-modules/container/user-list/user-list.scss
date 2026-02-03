@@ -2,8 +2,8 @@
   text-align: center;
   font-size: 22px;
   margin-bottom: 30px;
-  color: burlywood;
-  background: #000;
+  color: rgb(7, 7, 7);
+
   max-width: 40%;
   margin: auto;
   margin-top: 20px;
@@ -47,6 +47,7 @@
   background: #f7fafc;
   color: #5a67d8;
 }
+
 .hello {
   height: 100%;
   background-color: #000;
@@ -88,6 +89,7 @@ mat-paginator {
     padding: 8px;
   }
 }
+
 .link-for-work {
   text-decoration: none;
   padding: 5px;
@@ -106,7 +108,8 @@ mat-paginator {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 200px;
-  margin: 20px auto; /* Centers the container on the page */
+  margin: 20px auto;
+  /* Centers the container on the page */
 }
 
 .loading-message {
@@ -117,17 +120,20 @@ mat-paginator {
 
 .loading-spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
-  border-top: 4px solid #007bff; /* Blue spinner color */
+  border-top: 4px solid #007bff;
+  /* Blue spinner color */
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 1s linear infinite; /* Animation for spinning */
+  animation: spin 1s linear infinite;
+  /* Animation for spinning */
 }
 
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

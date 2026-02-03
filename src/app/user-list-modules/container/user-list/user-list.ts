@@ -5,11 +5,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { UserType } from './../../types/user.type';
 import { UserListService } from './../../services/user-list-service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { NavbarComponent } from "../../../user-work-list-module/components/navbar/navbar.component";
 
 @Component({
   standalone: true,
   selector: 'app-user-list',
-  imports: [CommonModule, RouterLink, MatPaginatorModule],
+  imports: [CommonModule, RouterLink, MatPaginatorModule, NavbarComponent],
   templateUrl: './user-list.html',
   styleUrl: './user-list.scss',
 })
