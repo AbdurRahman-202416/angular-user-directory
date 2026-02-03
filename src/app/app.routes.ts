@@ -15,14 +15,14 @@ export const routes: Routes = [
         (m) => m.UserWorkListModuleModule,
       ),
   },
-  {
-    path: 'work',
-    title: 'User Work List',
-    loadChildren: () =>
-      import('./user-work-list-module/user-work-list-module-module').then(
-        (m) => m.UserWorkListModuleModule,
-      ),
-  },
+  // {
+  //   path: 'work',
+  //   title: 'User Work List',
+  //   loadChildren: () =>
+  //     import('./user-work-list-module/user-work-list-module-module').then(
+  //       (m) => m.UserWorkListModuleModule,
+  //     ),
+  // },
   {
     path: 'formly',
     title: 'Formly User Form',
