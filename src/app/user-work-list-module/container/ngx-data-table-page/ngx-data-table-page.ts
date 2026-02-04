@@ -1,43 +1,49 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
 import { ColumnMode, DatatableComponent, NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { of } from 'rxjs';
-import { delay, finalize } from 'rxjs/operators';
+import { finalize, delay } from 'rxjs/operators';
+import { UserListService } from '../../services/user-list.service';
+import { UserType } from '../../types/user.type';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-ngx-data-table-page',
   standalone: true,
-  imports: [CommonModule, NgxDatatableModule, NavbarComponent],
+  imports: [CommonModule, NgxDatatableModule, NavbarComponent, MatIconModule, MatProgressBarModule],
   templateUrl: './ngx-data-table-page.html',
   styleUrl: './ngx-data-table-page.scss',
 })
 export class NgxDataTablePage implements OnInit {
   @ViewChild(DatatableComponent) table!: DatatableComponent;
-  @ViewChild('statusTemplate', { static: true }) statusTemplate!: TemplateRef<any>;
   @ViewChild('nameTemplate', { static: true }) nameTemplate!: TemplateRef<any>;
   @ViewChild('actionTemplate', { static: true }) actionTemplate!: TemplateRef<any>;
 
-  rows: any[] = [];
-  loadingIndicator = true;
+  private userService = inject(UserListService);
+
+  rows: UserType[] = [];
+  loadingIndicator = false;
   reorderable = true;
   columns: any[] = [];
   ColumnMode = ColumnMode;
 
-  // Json Config simulating external config
+  // Table Configuration for User Data
   tableConfig = {
     columns: [
-      { name: 'Name', prop: 'name', type: 'custom', templateName: 'nameTemplate' },
-      { name: 'Gender', prop: 'gender', type: 'text' },
-      { name: 'Company', prop: 'company', type: 'text' },
-      { name: 'Status', prop: 'status', type: 'custom', templateName: 'statusTemplate' },
-      { name: 'Action', prop: 'action', type: 'custom', templateName: 'actionTemplate' }
+      { name: 'Name', prop: 'name', templateName: 'nameTemplate' },
+      { name: 'Email', prop: 'email' },
+      { name: 'Phone', prop: 'phone' },
+      { name: 'Website', prop: 'website' },
+      { name: 'Company', prop: 'company.name' },
+      { name: 'Action', prop: 'id', templateName: 'actionTemplate' }
     ],
     settings: {
       limit: 10
     }
   };
+
 
   ngOnInit() {
     this.prepareColumns();
@@ -47,11 +53,11 @@ export class NgxDataTablePage implements OnInit {
   prepareColumns() {
     this.columns = this.tableConfig.columns.map(col => {
       let cellTemplate = null;
-      if (col.templateName === 'statusTemplate') cellTemplate = this.statusTemplate;
       if (col.templateName === 'nameTemplate') cellTemplate = this.nameTemplate;
       if (col.templateName === 'actionTemplate') cellTemplate = this.actionTemplate;
 
       return {
+
         name: col.name,
         prop: col.prop,
         cellTemplate: cellTemplate,
@@ -61,29 +67,28 @@ export class NgxDataTablePage implements OnInit {
   }
 
   loadData() {
-    this.loadingIndicator = true;
-    this.fetchFakeData().subscribe(data => {
-      this.rows = data;
+    const KEY = 'users_list';
+
+    // cache check
+    const cached = sessionStorage.getItem(KEY);
+    if (cached) {
+      this.rows = JSON.parse(cached);
       this.loadingIndicator = false;
-    });
-  }
+      return;
+    }
 
-  fetchFakeData() {
+    // API call
     this.loadingIndicator = true;
-    const data = [
-      { name: 'Austin', gender: 'Male', company: 'Swimlane', status: 'Active' },
-      { name: 'Dany', gender: 'Male', company: 'KFC', status: 'Inactive' },
-      { name: 'Molly', gender: 'Female', company: 'Burger King', status: 'Active' },
-      { name: 'John', gender: 'Male', company: 'McDonalds', status: 'Active' },
-      { name: 'Sarah', gender: 'Female', company: 'Wendy\'s', status: 'Inactive' },
-      { name: 'David', gender: 'Male', company: 'Taco Bell', status: 'Active' },
-    ];
-    // Simulate API delay
-    return of(data).pipe(delay(1000),
-      finalize(() => {
-        this.loadingIndicator = false;
-      })
-    );
-
+    this.userService.getAllUsersList()
+      .pipe(finalize(() => this.loadingIndicator = false))
+      .subscribe({
+        next: (data) => {
+          this.rows = data;
+          sessionStorage.setItem(KEY, JSON.stringify(data));
+        },
+        error: (err) => console.error(err)
+      });
   }
+
 }
+
