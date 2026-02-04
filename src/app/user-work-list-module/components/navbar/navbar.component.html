@@ -1,13 +1,29 @@
-<mat-toolbar color="primary" class="navbar elevate-header">
-    <span class="logo">
+<mat-toolbar class="navbar" [class.scrolled]="isScrolled">
+    <div class="navbar-container">
+        <div class="logo" routerLink="/">
+            <div class="logo-icon-bg">
+                <mat-icon>diversity_3</mat-icon>
+            </div>
+            <span class="logo-text">User<span class="accent">Directory</span></span>
+        </div>
 
-        User Directory
-    </span>
-    <span class="spacer"></span>
-    <div class="nav-links">
-        <a mat-button *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{exact: link.path === '/'}">
-            <span class="link-text">{{link.label}}</span>
-        </a>
+        <span class="spacer"></span>
+
+        <nav class="nav-links">
+            <a mat-button *ngFor="let link of navLinks" 
+               [routerLink]="link.path" 
+               routerLinkActive="active-link"
+               [routerLinkActiveOptions]="{exact: link.path === '/'}">
+                <mat-icon>{{link.icon}}</mat-icon>
+                <span class="link-text">{{link.label}}</span>
+                <div class="active-indicator"></div>
+            </a>
+        </nav>
+
+        <div class="actions">
+            <button mat-icon-button class="profile-btn">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+        </div>
     </div>
 </mat-toolbar>

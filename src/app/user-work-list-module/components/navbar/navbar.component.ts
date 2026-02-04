@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,11 +13,18 @@ import { MatIconModule } from '@angular/material/icon';
     styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+    isScrolled = false;
+
     navLinks = [
         { path: '/', label: 'Home', icon: 'home' },
-        { path: '/work/user-work', label: 'Work List', icon: 'list' },
-        { path: '/work/ngx-datatable', label: 'Data Table', icon: 'table_chart' },
-        { path: '/work/formly', label: 'Formly Form', icon: 'dynamic_feed' },
-
+        { path: '/work/user-work', label: 'Work List', icon: 'bubble_chart' },
+        { path: '/work/ngx-datatable', label: 'Data Table', icon: 'grid_view' },
+        { path: '/work/formly', label: 'Formly Form', icon: 'auto_awesome' },
     ];
+
+    @HostListener('window:scroll', [])
+    onWindowScroll() {
+        this.isScrolled = window.scrollY > 20;
+    }
 }
+
