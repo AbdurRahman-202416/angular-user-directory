@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, finalize } from 'rxjs/operators';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 
@@ -69,6 +69,7 @@ export class NgxDataTablePage implements OnInit {
   }
 
   fetchFakeData() {
+    this.loadingIndicator = true;
     const data = [
       { name: 'Austin', gender: 'Male', company: 'Swimlane', status: 'Active' },
       { name: 'Dany', gender: 'Male', company: 'KFC', status: 'Inactive' },
@@ -78,6 +79,11 @@ export class NgxDataTablePage implements OnInit {
       { name: 'David', gender: 'Male', company: 'Taco Bell', status: 'Active' },
     ];
     // Simulate API delay
-    return of(data).pipe(delay(1000));
+    return of(data).pipe(delay(1000),
+      finalize(() => {
+        this.loadingIndicator = false;
+      })
+    );
+
   }
 }
