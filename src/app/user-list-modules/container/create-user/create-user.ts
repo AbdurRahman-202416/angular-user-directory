@@ -8,7 +8,7 @@ import { NavbarComponent } from "../../../user-work-list-module/components/navba
 
 @Component({
   selector: 'app-create-user',
-  imports: [ReactiveFormsModule, RouterModule, CommonModule, RouterLink, NavbarComponent],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule, NavbarComponent],
   templateUrl: './create-user.html',
   styleUrl: './create-user.scss',
 })
@@ -16,7 +16,7 @@ export class CreateUser implements OnInit {
   constructor(
     private userFormService: UserListFormService,
     private location: Location,
-  ) {}
+  ) { }
 
   userForm!: FormGroup;
 
