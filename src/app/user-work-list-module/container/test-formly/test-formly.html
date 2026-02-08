@@ -1,13 +1,137 @@
 <app-navbar></app-navbar>
-<div class="formly-container">
-  <h3>Test Formly</h3>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-    <button type="submit" class="submit-btn" [disabled]="!form.valid">Submit</button>
-  </form>
 
-  <div class="debug-model">
-    <h4>Model:</h4>
-    <pre>{{ model | json }}</pre>
+<div class="test-formly-wrapper">
+  <div class="content-container">
+    <!-- Clean Header Section -->
+    <header class="header-section">
+      <h1 class="page-title">User Registry & Workspace</h1>
+      <p class="page-subtitle">A high-performance interface for dynamic user management and real-time data tracking.</p>
+    </header>
+
+    <div class="grid-main-layout">
+      <!-- Form Section -->
+      <section>
+        <mat-card class="form-card">
+          <mat-card-header>
+            <div mat-card-avatar class="header-image-box">
+              <mat-icon>person_add</mat-icon>
+            </div>
+            <mat-card-title>Create New User</mat-card-title>
+            <mat-card-subtitle>Dynamic Profile Configuration</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+              <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+              
+              <div class="form-actions">
+                <button mat-button type="button" (click)="form.reset()" class="reset-btn">
+                  <mat-icon>refresh</mat-icon>
+                  Reset Form
+                </button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" class="submit-btn">
+                  <mat-icon>save</mat-icon>
+                  Register User
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </section>
+
+      <!-- Debug Section -->
+      <aside>
+        <mat-card class="debug-card">
+          <mat-card-header>
+            <mat-card-title>Live Model State</mat-card-title>
+            <mat-card-subtitle>Reactive JSON Preview</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="json-viewer">
+              <pre>{{ model | json }}</pre>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </aside>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Table Section -->
+    <div class="table-container-section">
+      <div class="table-header">
+        <div class="title-group">
+          <h2>Registered Directory</h2>
+          <span class="badge">{{ rows.length }} ACTIVE ACCOUNTS</span>
+        </div>
+        <div class="actions">
+          <button mat-stroked-button color="primary">
+            <mat-icon>filter_list</mat-icon>
+            Filters
+          </button>
+          <button mat-flat-button color="accent">
+            <mat-icon>cloud_download</mat-icon>
+            Export
+          </button>
+        </div>
+      </div>
+
+      <mat-card class="table-card">
+        <ngx-datatable
+          class="material custom-table"
+          [rows]="rows"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="64"
+          [footerHeight]="64"
+          rowHeight="auto"
+          [limit]="10"
+          [scrollbarH]="true">
+          
+          <ngx-datatable-column name="User Profile" prop="name" [width]="240">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <div class="user-cell">
+                <div class="avatar" [style.background-color]="row.status === 'Active' ? '#2563eb' : '#64748b'">{{ value.charAt(0) }}</div>
+                <span class="name-text">{{ value }}</span>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="Email Address" prop="email" [width]="250"></ngx-datatable-column>
+          
+          <ngx-datatable-column name="Skills" prop="skills" [width]="200">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <span class="skills-text">{{ value }}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="System Role" prop="role" [width]="130">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <span class="role-tag" [ngClass]="value.toLowerCase()">{{ value }}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="Account Status" prop="status" [width]="150">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <div class="status-pill">
+                <span class="dot" [ngClass]="value.toLowerCase()"></span>
+                {{ value }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Actions" [sortable]="false" [width]="100">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div class="actions-group">
+                <button mat-icon-button color="primary">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </mat-card>
+    </div>
   </div>
 </div>
