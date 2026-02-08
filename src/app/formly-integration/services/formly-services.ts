@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class FormlyServices {}
+export class FormlyServices { }
 
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
