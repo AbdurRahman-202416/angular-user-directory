@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { NgxDatatableModule, ColumnMode } from '@swimlane/ngx-datatable';
@@ -66,6 +66,17 @@ export class TestFormly {
             label: 'First Name',
             placeholder: 'John',
             required: true,
+            type: 'text',
+            pattern: /^[a-zA-Z\s]*$/,
+          },
+          validators: {
+            validation: [Validators.required],
+          },
+          validation: {
+            messages: {
+              required: 'First Name is required',
+              pattern: 'Special characters are not allowed',
+            },
           },
         },
         {
@@ -76,6 +87,28 @@ export class TestFormly {
             label: 'Last Name',
             placeholder: 'Doe',
             required: true,
+          },
+        },
+        {
+          className: 'col-6',
+          key: 'personalInfo.mobile',
+          type: 'input',
+          props: {
+            label: 'Mobile Number',
+            placeholder: '01XXXXXXXXX',
+            required: true,
+            type: 'tel',
+            pattern: /^[0-9]*$/,
+            minLength: 11,
+            maxLength: 16,
+          },
+          validation: {
+            messages: {
+              required: 'Mobile number is required',
+              pattern: 'Only numeric characters are allowed',
+              minLength: 'Mobile number must be at least 11 digits',
+              maxLength: 'Mobile number cannot exceed 16 digits',
+            },
           },
         },
         {
@@ -117,7 +150,7 @@ export class TestFormly {
             label: 'Email address',
             placeholder: 'user@example.com',
             required: true,
-            pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+            // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
           },
           validation: {
             messages: {
