@@ -3,7 +3,8 @@
     <a routerLink="/" class="nav-link">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
         <path
-          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+        />
       </svg>
       <span>Back</span>
     </a>
@@ -12,38 +13,41 @@
       <span>Create User</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
         <path
-          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
       </svg>
     </a>
   </nav>
   @if (isLoading()) {
-  <p style="text-align: center; margin-top: 2rem;">Loading user details...</p>
+    <p style="text-align: center; margin-top: 2rem">Loading user details...</p>
   } @else {
-  <ul *ngIf="UserData as data; else noData" class="user-list">
-    <li>
-      <span class="label">Name</span>
-      <span class="value">{{ data.name }}</span>
-    </li>
-    <li>
-      <span class="label">Username</span>
-      <span class="value">{{ data.username }}</span>
-    </li>
-    <li>
-      <span class="label">Email</span>
-      <span class="value">{{ data.email }}</span>
-    </li>
-    <li>
-      <span class="label">Phone</span>
-      <span class="value">{{ data.phone }}</span>
-    </li>
-    <li>
-      <span class="label">City</span>
-      <span class="value">{{ data.address.city }}</span>
-    </li>
-  </ul>
+    <ul *ngIf="UserData as data; else noData" class="user-list">
+      <li>
+        <span class="label">Name</span>
+        <span class="value">{{ data.name }}</span>
+      </li>
+      <li>
+        <span class="label">Username</span>
+        <span class="value">{{ data.username }}</span>
+      </li>
+      <li>
+        <span class="label">Email</span>
+        <span class="value">{{ data.email }}</span>
+      </li>
+      <li>
+        <span class="label">Phone</span>
+        <span class="value">{{ data.phone }}</span>
+      </li>
+      <li>
+        <span class="label">City</span>
+        <span class="value">{{ data.address.city }}</span>
+      </li>
+    </ul>
 
-  <ng-template #noData>
-    <p style="text-align: center; margin-top: 2rem; color: red;">User not found or error loading data.</p>
-  </ng-template>
+    <ng-template #noData>
+      <p style="text-align: center; margin-top: 2rem; color: red">
+        User not found or error loading data.
+      </p>
+    </ng-template>
   }
 </div>

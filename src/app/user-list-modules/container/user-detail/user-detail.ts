@@ -15,7 +15,7 @@ export class UserDetail {
   constructor(
     private route: ActivatedRoute,
     private UserListService: UserListService,
-  ) { }
+  ) {}
   UserData: UserType | null = null;
 
   ngOnInit(): void {
@@ -27,18 +27,17 @@ export class UserDetail {
     console.log('User ID:', id);
     if (id) {
       this.isLoading.set(true);
-      this.UserListService.getUserById(Number(id))
-        .subscribe({
-          next: (data: UserType) => {
-            console.log('User Details Received:', data);
-            this.UserData = data;
-            this.isLoading.set(false);
-          },
-          error: (err) => {
-            console.error('Error fetching user:', err);
-            this.isLoading.set(false);
-          }
-        });
+      this.UserListService.getUserById(Number(id)).subscribe({
+        next: (data: UserType) => {
+          console.log('User Details Received:', data);
+          this.UserData = data;
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error('Error fetching user:', err);
+          this.isLoading.set(false);
+        },
+      });
     }
   }
 }

@@ -21,7 +21,7 @@ export class UserWorksList implements OnInit, OnDestroy {
     private userWorkService: UserWorkServices,
     public route: Router,
     public queryParams: ActivatedRoute,
-  ) { }
+  ) {}
   TodoList: userTodosType[] = [];
   AllData: userTodosType[] = [];
   inputSearchData: string = '';
@@ -37,18 +37,14 @@ export class UserWorksList implements OnInit, OnDestroy {
   }
 
   getUrlQueryParams() {
-    this.queryParams.queryParamMap
-      .pipe(
-        takeUntil(this.destroy$),
-      )
-      .subscribe(params => {
-        const value = params.get('search');
+    this.queryParams.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      const value = params.get('search');
 
-        if (value !== null) {
-          this.inputSearchData = value;
-          this.searchData(value);
-        }
-      });
+      if (value !== null) {
+        this.inputSearchData = value;
+        this.searchData(value);
+      }
+    });
   }
 
   getTodo() {

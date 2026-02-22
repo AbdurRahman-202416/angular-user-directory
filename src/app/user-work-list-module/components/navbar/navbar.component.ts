@@ -6,25 +6,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-navbar',
-    standalone: true,
-    imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule],
-    templateUrl: './navbar.component.html',
-    styleUrl: './navbar.component.scss',
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule],
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-    isScrolled = false;
+  isScrolled = false;
 
-    navLinks = [
-        { path: '/', label: 'Home', icon: 'home' },
-        { path: '/work/user-work', label: 'Work List', icon: 'bubble_chart' },
-        { path: '/work/ngx-datatable', label: 'Data Table', icon: 'grid_view' },
-        { path: '/work/formly', label: 'Formly Form', icon: 'auto_awesome' },
-    ];
+  navLinks = [
+    { path: '/', label: 'Home', icon: 'home' },
+    { path: '/work/user-work', label: 'Work List', icon: 'bubble_chart' },
+    { path: '/work/ngx-datatable', label: 'Data Table', icon: 'grid_view' },
+    { path: '/work/formly', label: 'Formly Form', icon: 'auto_awesome' },
+  ];
 
-    @HostListener('window:scroll', [])
-    onWindowScroll() {
-        this.isScrolled = window.scrollY > 20;
-    }
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 20;
+  }
 }
-

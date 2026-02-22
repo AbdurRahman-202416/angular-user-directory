@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { UserType } from './../../types/user.type';
 import { UserListService } from './../../services/user-list-service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { NavbarComponent } from "../../../user-work-list-module/components/navbar/navbar.component";
+import { NavbarComponent } from '../../../user-work-list-module/components/navbar/navbar.component';
 
 @Component({
   standalone: true,
@@ -22,7 +22,7 @@ export class UserList implements OnInit, OnDestroy {
   pageList: UserType[] = [];
   totalUsers = 0;
 
-  pageIndex = 0; 
+  pageIndex = 0;
   pageSize = 5;
 
   constructor(private userListService: UserListService) {}

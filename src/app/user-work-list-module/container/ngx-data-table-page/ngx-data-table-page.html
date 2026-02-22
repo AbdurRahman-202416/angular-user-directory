@@ -1,56 +1,65 @@
 <app-navbar></app-navbar>
 
 <div class="page-container">
-    <div class="page-header">
-        <div class="header-content">
-            <div class="icon-box">
-                <mat-icon>groups</mat-icon>
-            </div>
-            <div class="text-content">
-                <h1>User Directory</h1>
-                <p>Managing and viewing all administrative users from the database</p>
-            </div>
-        </div>
+  <div class="page-header">
+    <div class="header-content">
+      <div class="icon-box">
+        <mat-icon>groups</mat-icon>
+      </div>
+      <div class="text-content">
+        <h1>User Directory</h1>
+        <p>Managing and viewing all administrative users from the database</p>
+      </div>
     </div>
+  </div>
 
-    <div class="table-card">
-        <mat-progress-bar mode="indeterminate" *ngIf="loadingIndicator" class="loading-bar"></mat-progress-bar>
-        <div class="table-container">
-            <ngx-datatable 
-                class="material striped" 
-                [rows]="rows" 
-                [loadingIndicator]="loadingIndicator" 
-                [columns]="columns"
-                [columnMode]="ColumnMode.force" 
-                [headerHeight]="60" 
-                [footerHeight]="60" 
-                rowHeight="auto"
-                [reorderable]="reorderable" 
-                [limit]="tableConfig.settings.limit"
-                [messages]="{emptyMessage: 'No data to display', totalMessage: 'total', selectedMessage: 'selected'}">
-            </ngx-datatable>
-        </div>
+  <div class="table-card">
+    <mat-progress-bar
+      mode="indeterminate"
+      *ngIf="loadingIndicator"
+      class="loading-bar"
+    ></mat-progress-bar>
+    <div class="table-container">
+      <ngx-datatable
+        class="material striped"
+        [rows]="rows"
+        [loadingIndicator]="loadingIndicator"
+        [columns]="columns"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="60"
+        [footerHeight]="60"
+        rowHeight="auto"
+        [reorderable]="reorderable"
+        [limit]="tableConfig.settings.limit"
+        [messages]="{
+          emptyMessage: 'No data to display',
+          totalMessage: 'total',
+          selectedMessage: 'selected',
+        }"
+      >
+      </ngx-datatable>
     </div>
+  </div>
 </div>
 
 <!-- Templates -->
 <ng-template #nameTemplate let-row="row" let-value="value">
-    <div class="name-cell">
-        <div class="avatar">{{ value.charAt(0) }}</div>
-        <div class="name-info">
-            <span class="full-name">{{ value }}</span>
-            <span class="user-id">ID: {{ row.id }}</span>
-        </div>
+  <div class="name-cell">
+    <div class="avatar">{{ value.charAt(0) }}</div>
+    <div class="name-info">
+      <span class="full-name">{{ value }}</span>
+      <span class="user-id">ID: {{ row.id }}</span>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #actionTemplate let-row="row" let-value="value">
-    <div class="action-buttons">
-        <button class="action-btn edit" title="Edit User">
-            <mat-icon>edit</mat-icon>
-        </button>
-        <button class="action-btn delete" title="Delete User">
-            <mat-icon>delete_outline</mat-icon>
-        </button>
-    </div>
+  <div class="action-buttons">
+    <button class="action-btn edit" title="Edit User">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button class="action-btn delete" title="Delete User">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
 </ng-template>

@@ -8,9 +8,8 @@ describe('FormlyUserForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormlyUserForm]
-    })
-    .compileComponents();
+      imports: [FormlyUserForm],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormlyUserForm);
     component = fixture.componentInstance;

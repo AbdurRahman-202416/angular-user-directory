@@ -19,9 +19,7 @@ const routes: Routes = [
   {
     path: 'ngx-datatable',
     loadComponent: () =>
-      import('./container/ngx-data-table-page/ngx-data-table-page').then(
-        (C) => C.NgxDataTablePage,
-      ),
+      import('./container/ngx-data-table-page/ngx-data-table-page').then((C) => C.NgxDataTablePage),
   },
 ];
 
@@ -29,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class userWorkListRoute { }
+export class userWorkListRoute {}

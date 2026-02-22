@@ -37,13 +37,12 @@ export class NgxDataTablePage implements OnInit {
       { name: 'Phone', prop: 'phone' },
       { name: 'Website', prop: 'website' },
       { name: 'Company', prop: 'company.name' },
-      { name: 'Action', prop: 'id', templateName: 'actionTemplate' }
+      { name: 'Action', prop: 'id', templateName: 'actionTemplate' },
     ],
     settings: {
-      limit: 10
-    }
+      limit: 10,
+    },
   };
-
 
   ngOnInit() {
     this.prepareColumns();
@@ -51,17 +50,16 @@ export class NgxDataTablePage implements OnInit {
   }
 
   prepareColumns() {
-    this.columns = this.tableConfig.columns.map(col => {
+    this.columns = this.tableConfig.columns.map((col) => {
       let cellTemplate = null;
       if (col.templateName === 'nameTemplate') cellTemplate = this.nameTemplate;
       if (col.templateName === 'actionTemplate') cellTemplate = this.actionTemplate;
 
       return {
-
         name: col.name,
         prop: col.prop,
         cellTemplate: cellTemplate,
-        flexGrow: 1
+        flexGrow: 1,
       };
     });
   }
@@ -79,16 +77,15 @@ export class NgxDataTablePage implements OnInit {
 
     // API call
     this.loadingIndicator = true;
-    this.userService.getAllUsersList()
-      .pipe(finalize(() => this.loadingIndicator = false))
+    this.userService
+      .getAllUsersList()
+      .pipe(finalize(() => (this.loadingIndicator = false)))
       .subscribe({
         next: (data) => {
           this.rows = data;
           sessionStorage.setItem(KEY, JSON.stringify(data));
         },
-        error: (err) => console.error(err)
+        error: (err) => console.error(err),
       });
   }
-
 }
-

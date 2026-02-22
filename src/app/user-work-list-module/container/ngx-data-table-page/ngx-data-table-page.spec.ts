@@ -8,9 +8,8 @@ describe('NgxDataTablePage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NgxDataTablePage]
-    })
-    .compileComponents();
+      imports: [NgxDataTablePage],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NgxDataTablePage);
     component = fixture.componentInstance;

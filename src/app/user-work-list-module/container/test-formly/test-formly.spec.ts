@@ -8,9 +8,8 @@ describe('TestFormly', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestFormly]
-    })
-    .compileComponents();
+      imports: [TestFormly],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TestFormly);
     component = fixture.componentInstance;

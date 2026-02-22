@@ -4,9 +4,6 @@ import { FormlyUserFormRoute } from './formly-integration.routes';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    FormlyUserFormRoute
-  ]
+  imports: [CommonModule, FormlyUserFormRoute],
 })
-export class FormlyIntegrationModule { }
+export class FormlyIntegrationModule {}

@@ -1,106 +1,108 @@
 .formly-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2.5rem;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border: 1px solid #e5e7eb;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #111827;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #f3f4f6;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
 }
 
 form {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 button[type='submit'] {
-    width: 100%;
-    padding: 0.75rem 1.5rem;
-    background-color: #2563eb;
-    color: white;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 1rem;
 
-    &:hover:not(:disabled) {
-        background-color: #1d4ed8;
-    }
+  &:hover:not(:disabled) {
+    background-color: #1d4ed8;
+  }
 
-    &:disabled {
-        background-color: #9ca3af;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }
 }
 
 .nav-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 1rem;
-    color: #4b5563;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
-    padding: 0.5rem;
-    border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  padding: 0.5rem;
+  border-radius: 4px;
 
-    &:hover {
-        color: #111827;
-        background-color: #f9fafb;
-        text-decoration: none;
-    }
+  &:hover {
+    color: #111827;
+    background-color: #f9fafb;
+    text-decoration: none;
+  }
 }
 
 @media (max-width: 640px) {
-    .formly-container {
-        padding: 1.5rem;
-    }
+  .formly-container {
+    padding: 1.5rem;
+  }
 
-    h1 {
-        font-size: 1.25rem;
-    }
+  h1 {
+    font-size: 1.25rem;
+  }
 }
 
 ::ng-deep {
-    .mat-mdc-form-field {
-        display: block !important;
-        width: 100%;
-        margin-bottom: 5px;
-    }
+  .mat-mdc-form-field {
+    display: block !important;
+    width: 100%;
+    margin-bottom: 5px;
+  }
 
-    .mat-mdc-text-field-wrapper {
-        background-color: #ffffff !important;
-        border: 1px solid #d1d5db;
-        border-radius: 6px !important;
-        padding: 0 12px;
-    }
+  .mat-mdc-text-field-wrapper {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db;
+    border-radius: 6px !important;
+    padding: 0 12px;
+  }
 
-    .mat-focused .mat-mdc-text-field-wrapper {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 1px #2563eb;
-    }
+  .mat-focused .mat-mdc-text-field-wrapper {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px #2563eb;
+  }
 
-    .mdc-line-ripple {
-        display: none;
-    }
+  .mdc-line-ripple {
+    display: none;
+  }
 
-    .mat-mdc-form-field-subscript-wrapper {
-        font-size: 0.8rem;
-    }
+  .mat-mdc-form-field-subscript-wrapper {
+    font-size: 0.8rem;
+  }
 }

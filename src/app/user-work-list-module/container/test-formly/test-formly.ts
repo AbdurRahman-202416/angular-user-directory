@@ -38,15 +38,31 @@ export class TestFormly {
     accountInfo: {
       email: 'user@example.com',
     },
-    skills: [
-      { name: 'Angular', level: 'Expert' }
-    ]
+    skills: [{ name: 'Angular', level: 'Expert' }],
   };
 
   rows: any[] = [
-    { name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active', skills: 'Angular, Node' },
-    { name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Inactive', skills: 'React, Python' },
-    { name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor', status: 'Active', skills: 'UI/UX' },
+    {
+      name: 'John Doe',
+      email: 'john@example.com',
+      role: 'Admin',
+      status: 'Active',
+      skills: 'Angular, Node',
+    },
+    {
+      name: 'Jane Smith',
+      email: 'jane@example.com',
+      role: 'User',
+      status: 'Inactive',
+      skills: 'React, Python',
+    },
+    {
+      name: 'Bob Johnson',
+      email: 'bob@example.com',
+      role: 'Editor',
+      status: 'Active',
+      skills: 'UI/UX',
+    },
   ];
 
   ColumnMode = ColumnMode;
@@ -154,7 +170,8 @@ export class TestFormly {
           },
           validation: {
             messages: {
-              pattern: (error, field: FormlyFieldConfig) => `"${field.formControl?.value}" is not a valid email address`,
+              pattern: (error, field: FormlyFieldConfig) =>
+                `"${field.formControl?.value}" is not a valid email address`,
             },
           },
         },
@@ -246,7 +263,7 @@ export class TestFormly {
     },
   ];
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   onSubmit() {
     if (this.form.valid) {
@@ -256,7 +273,7 @@ export class TestFormly {
         email: this.model.accountInfo.email,
         role: this.model.role === 'Other' ? this.model.otherRole : this.model.role,
         status: this.model.status,
-        skills: skillsList
+        skills: skillsList,
       };
 
       this.rows = [...this.rows, newUser];
@@ -266,7 +283,7 @@ export class TestFormly {
       this.model = {
         personalInfo: {},
         accountInfo: {},
-        skills: []
+        skills: [],
       };
       this.form.reset();
       this.cdr.detectChanges();
