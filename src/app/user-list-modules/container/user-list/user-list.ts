@@ -36,7 +36,7 @@ export class UserList implements OnInit, OnDestroy {
   constructor(
     private userListService: UserListService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadUsers();
