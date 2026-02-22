@@ -1,1 +1,4 @@
+<div class="global-loader-container" *ngIf="loadingService.isLoading()">
+  <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+</div>
 <router-outlet></router-outlet>
