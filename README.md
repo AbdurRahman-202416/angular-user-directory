@@ -5,22 +5,29 @@ A modern, high-performance Angular application for managing and displaying user 
 ## 🚀 Key Features
 
 ### 💎 User Management (Standard)
-- **User List View**: Paginated list of users with search functionality and loading states.
+
+- **User List View**: Paginated list of users with search functionality and global loading states.
 - **Detailed User Profile**: Innovative profile view with comprehensive user information.
 - **User Creation**: Form with dynamic skills management (add/remove skills) using `FormArray`.
+- **Performance Optimized**: Built with `ChangeDetectionStrategy.OnPush` for optimal rendering speeds.
 
 ### ⚡ Work Management (Advanced)
+
 - **Premium Real-Time Datatable**: Advanced implementation using `@swimlane/ngx-datatable` featuring:
   - Custom cell templates with visual avatars.
   - Interactive status badges (Active/Inactive) and role chips.
   - Sorting, pagination, and horizontal scrolling for large datasets.
-- **Advanced Dynamic Forms (Formly)**: 
+  - **Inline Editing & Deletion**: Fully integrated Angular Material dialogs (`MatDialog`) for seamlessly modifying or deleting table data.
+- **Advanced Dynamic Forms (Formly)**:
+  - **Validation & Constraints**: Regex pattern matching for names/mobile numbers, min/max length validation.
   - **12-Column Grid System**: Optimized form layout that maximizes field visibility.
   - **Repeatable Sections**: Custom "repeat" type for dynamic lists (e.g., Skills).
   - **Conditional Logic**: Fields that appear/hide based on user selection (expressions).
   - **Complex Types**: Integration with Material Datepicker and Select inputs.
 
 ### 🎨 Design & UX
+
+- **Global Loading State**: A custom `HttpInterceptor` paired with a singleton `LoadingService` provides a continuous `<mat-progress-bar>` at the top of the app across all API requests.
 - **Modern Dashboard Layout**: Clean, responsive interfaces with high-quality Material Design cards.
 - **Premium Aesthetics**: Sophisticated typography, subtle shadow systems, and balanced color palettes.
 - **Responsive Navigation**: Global Navbar for seamless transitions between modules.
@@ -66,4 +73,5 @@ src/app/
 - **Premium Formly**: `/work/formly`
 
 ---
-*Built with ❤️ using Angular 21.*
+
+_Built with ❤️ using Angular 21._

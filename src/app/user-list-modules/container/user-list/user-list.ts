@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  signal,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -13,6 +20,7 @@ import { NavbarComponent } from '../../../user-work-list-module/components/navba
   imports: [CommonModule, RouterLink, MatPaginatorModule, NavbarComponent],
   templateUrl: './user-list.html',
   styleUrl: './user-list.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserList implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
@@ -25,7 +33,10 @@ export class UserList implements OnInit, OnDestroy {
   pageIndex = 0;
   pageSize = 5;
 
-  constructor(private userListService: UserListService) {}
+  constructor(
+    private userListService: UserListService,
+    private cdr: ChangeDetectorRef,
+  ) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -42,9 +53,11 @@ export class UserList implements OnInit, OnDestroy {
           this.pageList = res.data;
           this.totalUsers = res.total;
           this.isLoading.set(false);
+          this.cdr.detectChanges();
         },
         error: () => {
           this.isLoading.set(false);
+          this.cdr.detectChanges();
         },
       });
   }

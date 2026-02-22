@@ -24,42 +24,51 @@
         class="material striped"
         [rows]="rows"
         [loadingIndicator]="loadingIndicator"
-        [columns]="columns"
         [columnMode]="ColumnMode.force"
         [headerHeight]="60"
         [footerHeight]="60"
         rowHeight="auto"
-        [reorderable]="reorderable"
-        [limit]="tableConfig.settings.limit"
+        [limit]="10"
         [messages]="{
           emptyMessage: 'No data to display',
           totalMessage: 'total',
           selectedMessage: 'selected',
         }"
       >
+        <ngx-datatable-column name="Name" prop="name" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div class="name-cell">
+              <div class="avatar">{{ value ? value.charAt(0) : '' }}</div>
+              <div class="name-info">
+                <span class="full-name">{{ value }}</span>
+                <span class="user-id">ID: {{ row.id }}</span>
+              </div>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Email" prop="email" [flexGrow]="1"></ngx-datatable-column>
+        <ngx-datatable-column name="Phone" prop="phone" [flexGrow]="1"></ngx-datatable-column>
+        <ngx-datatable-column name="Website" prop="website" [flexGrow]="1"></ngx-datatable-column>
+        <ngx-datatable-column
+          name="Company"
+          prop="company.name"
+          [flexGrow]="1"
+        ></ngx-datatable-column>
+
+        <ngx-datatable-column name="Action" prop="id" [flexGrow]="1" [sortable]="false">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div class="action-buttons">
+              <button class="action-btn edit" title="Edit User" (click)="editUser(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="action-btn delete" title="Delete User" (click)="deleteUser(row)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
       </ngx-datatable>
     </div>
   </div>
 </div>
-
-<!-- Templates -->
-<ng-template #nameTemplate let-row="row" let-value="value">
-  <div class="name-cell">
-    <div class="avatar">{{ value.charAt(0) }}</div>
-    <div class="name-info">
-      <span class="full-name">{{ value }}</span>
-      <span class="user-id">ID: {{ row.id }}</span>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #actionTemplate let-row="row" let-value="value">
-  <div class="action-buttons">
-    <button class="action-btn edit" title="Edit User">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button class="action-btn delete" title="Delete User">
-      <mat-icon>delete_outline</mat-icon>
-    </button>
-  </div>
-</ng-template>

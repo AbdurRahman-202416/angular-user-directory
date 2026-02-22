@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
-import { ColumnMode, DatatableComponent, NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { finalize, delay } from 'rxjs/operators';
+import { Component, OnInit, inject } from '@angular/core';
+import { ColumnMode, NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { finalize } from 'rxjs/operators';
 import { UserListService } from '../../services/user-list.service';
 import { UserType } from '../../types/user.type';
 
@@ -17,51 +17,28 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './ngx-data-table-page.scss',
 })
 export class NgxDataTablePage implements OnInit {
-  @ViewChild(DatatableComponent) table!: DatatableComponent;
-  @ViewChild('nameTemplate', { static: true }) nameTemplate!: TemplateRef<any>;
-  @ViewChild('actionTemplate', { static: true }) actionTemplate!: TemplateRef<any>;
-
   private userService = inject(UserListService);
 
   rows: UserType[] = [];
   loadingIndicator = false;
-  reorderable = true;
-  columns: any[] = [];
   ColumnMode = ColumnMode;
 
-  // Table Configuration for User Data
-  tableConfig = {
-    columns: [
-      { name: 'Name', prop: 'name', templateName: 'nameTemplate' },
-      { name: 'Email', prop: 'email' },
-      { name: 'Phone', prop: 'phone' },
-      { name: 'Website', prop: 'website' },
-      { name: 'Company', prop: 'company.name' },
-      { name: 'Action', prop: 'id', templateName: 'actionTemplate' },
-    ],
-    settings: {
-      limit: 10,
-    },
-  };
-
   ngOnInit() {
-    this.prepareColumns();
     this.loadData();
   }
 
-  prepareColumns() {
-    this.columns = this.tableConfig.columns.map((col) => {
-      let cellTemplate = null;
-      if (col.templateName === 'nameTemplate') cellTemplate = this.nameTemplate;
-      if (col.templateName === 'actionTemplate') cellTemplate = this.actionTemplate;
+  editUser(row: any) {
+    console.log('Editing user:', row);
+    // You can implement routing to an edit page or opening a dialog here.
+    alert(`Edit feature coming soon for ${row.name}`);
+  }
 
-      return {
-        name: col.name,
-        prop: col.prop,
-        cellTemplate: cellTemplate,
-        flexGrow: 1,
-      };
-    });
+  deleteUser(row: any) {
+    if (confirm(`Are you sure you want to delete ${row.name}?`)) {
+      this.rows = this.rows.filter((r) => r.id !== row.id);
+      sessionStorage.setItem('users_list', JSON.stringify(this.rows));
+      console.log('User deleted successfully.');
+    }
   }
 
   loadData() {
