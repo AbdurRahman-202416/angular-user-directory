@@ -18,17 +18,17 @@
             <div mat-card-avatar class="header-image-box">
               <mat-icon>person_add</mat-icon>
             </div>
-            <mat-card-title>Create New User</mat-card-title>
-            <mat-card-subtitle>Dynamic Profile Configuration</mat-card-subtitle>
+          <mat-card-title>{{ editingId ? 'Edit Selected User' : 'Create New User' }}</mat-card-title>
+            <mat-card-subtitle>{{ editingId ? 'Update Profile Details' : 'Dynamic Profile Configuration' }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-              <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+              <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"></formly-form>
 
               <div class="form-actions">
-                <button mat-button type="button" (click)="form.reset()" class="reset-btn">
-                  <mat-icon>refresh</mat-icon>
-                  Reset Form
+                <button mat-button type="button" (click)="resetForm()" class="reset-btn">
+                  <mat-icon>{{ editingId ? 'cancel' : 'refresh' }}</mat-icon>
+                  {{ editingId ? 'Cancel Edit' : 'Reset Form' }}
                 </button>
                 <button
                   mat-raised-button
@@ -37,8 +37,8 @@
                   [disabled]="!form.valid"
                   class="submit-btn"
                 >
-                  <mat-icon>save</mat-icon>
-                  Register User
+                  <mat-icon>{{ editingId ? 'update' : 'save' }}</mat-icon>
+                  {{ editingId ? 'Update User' : 'Register User' }}
                 </button>
               </div>
             </form>
@@ -72,13 +72,13 @@
           <span class="badge">{{ rows.length }} ACTIVE ACCOUNTS</span>
         </div>
         <div class="actions">
-          <button mat-stroked-button color="primary">
+          <button mat-stroked-button color="primary" (click)="toggleFilter()">
             <mat-icon>filter_list</mat-icon>
-            Filters
+            {{ isFiltered ? 'Clear Filter' : 'Filter A-Z' }}
           </button>
-          <button mat-flat-button color="accent">
+          <button mat-flat-button color="accent" (click)="exportData()">
             <mat-icon>cloud_download</mat-icon>
-            Export
+            Export JSON
           </button>
         </div>
       </div>
@@ -135,13 +135,13 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Actions" [sortable]="false" [width]="100">
+          <ngx-datatable-column name="Actions" [sortable]="false" [width]="120">
             <ng-template let-row="row" ngx-datatable-cell-template>
               <div class="actions-group">
-                <button mat-icon-button color="primary">
+                <button mat-icon-button color="primary" (click)="editUser(row)" matTooltip="Edit User">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn">
+                <button mat-icon-button color="warn" (click)="deleteUser(row)" matTooltip="Delete User">
                   <mat-icon>delete_outline</mat-icon>
                 </button>
               </div>
